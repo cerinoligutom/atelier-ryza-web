@@ -4,3 +4,25 @@
 html {
   font-family: 'Fira Code', monospace;
 }
+
+/* Grid System */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    display: flex;
+    flex-direction: column;
+    width: $i / 12 * 100%;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

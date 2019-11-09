@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { Injectable } from "@angular/core";
-import * as Apollo from "apollo-angular";
+import gql from 'graphql-tag';
+import { Injectable } from '@angular/core';
+import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -30,50 +30,50 @@ export type Scalars = {
 };
 
 export enum Dummy {
-  Dummy = "DUMMY"
+  Dummy = 'DUMMY',
 }
 
 export type DummySubscriptionPayload = {
-  __typename?: "DummySubscriptionPayload";
-  dummy?: Maybe<Scalars["String"]>;
+  __typename?: 'DummySubscriptionPayload';
+  dummy?: Maybe<Scalars['String']>;
 };
 
 export type EnemyBoss = {
-  __typename?: "EnemyBoss";
-  name?: Maybe<Scalars["String"]>;
+  __typename?: 'EnemyBoss';
+  name?: Maybe<Scalars['String']>;
   type?: Maybe<EnemyBossType>;
 };
 
 export enum EnemyBossType {
-  Regular = "REGULAR",
-  Ravine = "RAVINE",
-  Domain = "DOMAIN"
+  Regular = 'REGULAR',
+  Ravine = 'RAVINE',
+  Domain = 'DOMAIN',
 }
 
 export type EnemyMonster = {
-  __typename?: "EnemyMonster";
-  name?: Maybe<Scalars["String"]>;
+  __typename?: 'EnemyMonster';
+  name?: Maybe<Scalars['String']>;
 };
 
 export type ItemDrop = {
-  __typename?: "ItemDrop";
-  name?: Maybe<Scalars["String"]>;
+  __typename?: 'ItemDrop';
+  name?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  _dummy?: Maybe<Scalars["String"]>;
+  __typename?: 'Mutation';
+  _dummy?: Maybe<Scalars['String']>;
 };
 
 export type Node = {
-  id: Scalars["ID"];
+  id: Scalars['ID'];
 };
 
 export type PasswordResult = {
-  __typename?: "PasswordResult";
-  level?: Maybe<Scalars["Int"]>;
-  cost?: Maybe<Scalars["Int"]>;
-  password?: Maybe<Scalars["String"]>;
+  __typename?: 'PasswordResult';
+  level?: Maybe<Scalars['Int']>;
+  cost?: Maybe<Scalars['Int']>;
+  password?: Maybe<Scalars['String']>;
   primaryItem?: Maybe<ItemDrop>;
   secondaryItem?: Maybe<ItemDrop>;
   monster?: Maybe<EnemyMonster>;
@@ -81,62 +81,51 @@ export type PasswordResult = {
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   node?: Maybe<Node>;
   password: Array<PasswordResult>;
   itemName: Array<PasswordResult>;
-  _dummy?: Maybe<Scalars["String"]>;
+  _dummy?: Maybe<Scalars['String']>;
 };
 
 export type QueryNodeArgs = {
-  id: Scalars["ID"];
+  id: Scalars['ID'];
 };
 
 export type QueryPasswordArgs = {
-  input: Scalars["String"];
-  levelLimit?: Maybe<Scalars["Int"]>;
+  input: Scalars['String'];
+  levelLimit?: Maybe<Scalars['Int']>;
 };
 
 export type QueryItemNameArgs = {
-  input: Scalars["String"];
-  levelLimit?: Maybe<Scalars["Int"]>;
+  input: Scalars['String'];
+  levelLimit?: Maybe<Scalars['Int']>;
 };
 
 export type Subscription = {
-  __typename?: "Subscription";
+  __typename?: 'Subscription';
   _dummy?: Maybe<DummySubscriptionPayload>;
 };
 
 export type GetByPasswordQueryVariables = {
-  input: Scalars["String"];
-  levelLimit?: Maybe<Scalars["Int"]>;
+  input: Scalars['String'];
+  levelLimit?: Maybe<Scalars['Int']>;
 };
 
-export type GetByPasswordQuery = { __typename?: "Query" } & {
-  password: Array<{ __typename?: "PasswordResult" } & PasswordResultFragment>;
-};
+export type GetByPasswordQuery = { __typename?: 'Query' } & { password: Array<{ __typename?: 'PasswordResult' } & PasswordResultFragment> };
 
 export type GetByItemNameQueryVariables = {
-  input: Scalars["String"];
-  levelLimit?: Maybe<Scalars["Int"]>;
+  input: Scalars['String'];
+  levelLimit?: Maybe<Scalars['Int']>;
 };
 
-export type GetByItemNameQuery = { __typename?: "Query" } & {
-  itemName: Array<{ __typename?: "PasswordResult" } & PasswordResultFragment>;
-};
+export type GetByItemNameQuery = { __typename?: 'Query' } & { itemName: Array<{ __typename?: 'PasswordResult' } & PasswordResultFragment> };
 
-export type PasswordResultFragment = { __typename?: "PasswordResult" } & Pick<
-  PasswordResult,
-  "password" | "level" | "cost"
-> & {
-    primaryItem: Maybe<{ __typename?: "ItemDrop" } & Pick<ItemDrop, "name">>;
-    secondaryItem: Maybe<{ __typename?: "ItemDrop" } & Pick<ItemDrop, "name">>;
-    monster: Maybe<
-      { __typename?: "EnemyMonster" } & Pick<EnemyMonster, "name">
-    >;
-    boss: Maybe<
-      { __typename?: "EnemyBoss" } & Pick<EnemyBoss, "name" | "type">
-    >;
+export type PasswordResultFragment = { __typename?: 'PasswordResult' } & Pick<PasswordResult, 'password' | 'level' | 'cost'> & {
+    primaryItem: Maybe<{ __typename?: 'ItemDrop' } & Pick<ItemDrop, 'name'>>;
+    secondaryItem: Maybe<{ __typename?: 'ItemDrop' } & Pick<ItemDrop, 'name'>>;
+    monster: Maybe<{ __typename?: 'EnemyMonster' } & Pick<EnemyMonster, 'name'>>;
+    boss: Maybe<{ __typename?: 'EnemyBoss' } & Pick<EnemyBoss, 'name' | 'type'>>;
   };
 
 export const PasswordResultFragmentDoc = gql`
@@ -169,12 +158,9 @@ export const GetByPasswordDocument = gql`
 `;
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
-export class GetByPasswordGQL extends Apollo.Query<
-  GetByPasswordQuery,
-  GetByPasswordQueryVariables
-> {
+export class GetByPasswordGQL extends Apollo.Query<GetByPasswordQuery, GetByPasswordQueryVariables> {
   document = GetByPasswordDocument;
 }
 export const GetByItemNameDocument = gql`
@@ -187,11 +173,8 @@ export const GetByItemNameDocument = gql`
 `;
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
-export class GetByItemNameGQL extends Apollo.Query<
-  GetByItemNameQuery,
-  GetByItemNameQueryVariables
-> {
+export class GetByItemNameGQL extends Apollo.Query<GetByItemNameQuery, GetByItemNameQueryVariables> {
   document = GetByItemNameDocument;
 }
