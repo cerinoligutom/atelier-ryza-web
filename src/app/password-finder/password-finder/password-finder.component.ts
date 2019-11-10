@@ -18,7 +18,7 @@ interface ISearchForm {
 })
 export class PasswordFinderComponent implements OnInit, OnDestroy {
   subs = new SubSink();
-  results!: PasswordResultFragment[];
+  results: PasswordResultFragment[] = [];
   searchTypes: string[] = Object.values(SearchType);
   form!: FormGroup;
   isFetching = false;
