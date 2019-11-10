@@ -1,12 +1,12 @@
 .lds-ripple {
   display: inline-block;
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid #fff;
+  border: 4px solid var(--primary-brand-color);
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

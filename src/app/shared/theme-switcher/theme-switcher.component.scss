@@ -8,6 +8,10 @@
   flex-direction: column;
   margin: 8px 4px;
 
+  .header {
+    margin-bottom: 4px;
+  }
+
   .theme-options {
     display: flex;
     flex-direction: row;
