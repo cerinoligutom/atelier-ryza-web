@@ -27,7 +27,7 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.form = this.fb.group({
-      searchInput: [null, [Validators.required, Validators.minLength(3)]],
+      searchInput: [null, [Validators.required, Validators.minLength(2)]],
       levelLimit: [100, [Validators.required, Validators.min(1), Validators.max(100)]],
       searchType: [SearchType.ITEM_NAME, [Validators.required]],
     });
