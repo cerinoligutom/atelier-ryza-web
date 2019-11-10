@@ -1,27 +1,41 @@
 # Atelier Ryza: Password Finder
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
+A pet project I did for looking up travel bottle passwords in the game "Atelier Ryza"! 
 
-## Development server
+Inspiration taken from [Serity](https://github.com/Serity/serity.github.io).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Search by Item Name
+- Search by Password
+- Level Limit
+- Light/Dark Theme
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots
+Light Theme
+![image](https://user-images.githubusercontent.com/6721822/68551064-e7699e00-0443-11ea-8bb4-a874ef235b16.png)
 
-## Build
+Dark Theme
+![image](https://user-images.githubusercontent.com/6721822/68551057-dae54580-0443-11ea-9dd0-b48f61f24908.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Getting Started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run the [API](https://github.com/cerino-ligutom/atelier-ryza-api) as well so you can get data.
 
-## Running end-to-end tests
+```bash
+# Install dependencies for the host
+npm install
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Start Angular project
+npm start
 
-## Further help
+# Start GraphQL Code Generator
+npm run codegen
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+**Note:** You might be prompted to share your drive with Docker if you haven't done so previously. The drive letter you need to share in this case would be the drive letter of where this repository resides.
+
+## Data/Process Workflow
+
+See this [diagram](https://tinyurl.com/ryza-pw-finder-v1-0).
