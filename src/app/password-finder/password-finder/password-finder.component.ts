@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetByItemNameGQL, GetByPasswordGQL, GetByItemNameQuery, PasswordResultFragment } from '@ryza/graphql';
 import { SubSink } from 'subsink';
-import { map, debounceTime, switchMap, finalize } from 'rxjs/operators';
+import { map, debounceTime, switchMap, finalize, tap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchType } from '@ryza/core/enums';
 
@@ -26,6 +26,8 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
   page = 1;
   pageSize = 50;
 
+  hasError = false;
+
   constructor(private fb: FormBuilder, private getByItemNameGQL: GetByItemNameGQL, private getByPasswordGQL: GetByPasswordGQL) {}
 
   get pageStart() {
@@ -48,7 +50,7 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.form = this.fb.group({
-      searchInput: ['dunkelheit', [Validators.required, Validators.minLength(2)]],
+      searchInput: [null, [Validators.required, Validators.minLength(2)]],
       levelLimit: [100, [Validators.required, Validators.min(1), Validators.max(100)]],
       searchType: [SearchType.ITEM_NAME, [Validators.required]],
     });
@@ -58,6 +60,9 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
     this.subs.sink = this.form.valueChanges
       .pipe(
         debounceTime<ISearchForm>(500),
+        tap(() => {
+          this.hasError = false;
+        }),
         switchMap(form => {
           const { levelLimit, searchType } = form;
           let { searchInput } = form;
@@ -81,13 +86,18 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
           }
         }),
       )
-      .subscribe(results => {
-        this.results = results;
-        this.isFetching = false;
-
-        // Reset page
-        this.page = 1;
-      });
+      .subscribe(
+        results => {
+          this.results = results;
+          this.isFetching = false;
+          // Reset page
+          this.page = 1;
+        },
+        () => {
+          this.hasError = true;
+          this.isFetching = false;
+        },
+      );
   }
 
   ngOnInit() {
