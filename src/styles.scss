@@ -1,12 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'styles/reset.scss';
+@import 'styles/themes/dark-theme.scss';
+@import 'styles/themes/light-theme.scss';
 
 html {
   font-family: 'Fira Code', monospace;
 }
 
 body {
-  margin: 8px;
+  margin: 1rem;
+  background-color: var(--secondary-background-color);
+
+  transition: background-color 0.5s;
+
+  * {
+    color: var(--primary-text-color);
+  }
+}
+
+/* Remove arrows on input type number */
+input[type='number'] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 /* Grid System */

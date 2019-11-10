@@ -1,10 +1,21 @@
-body.dark-theme {
+body.Dark {
   &.colors {
+    --blue: #4285f4;
+    --black: #1f232d;
+    --grey: #272c38;
+    --light-grey: #8596a5;
   }
 
   &.concepts {
+    --primary-brand-color: var(--blue);
+    --primary-background-color: var(--black);
+    --secondary-background-color: var(--grey);
+    --primary-text-color: var(--light-grey);
+    --secondary-text-color: lighten(var(--light-grey), 20%);
   }
 
   &.entities {
+    --content-background-color: var(--primary-background-color);
+    --active-input-color: var(--primary-brand-color);
   }
 }

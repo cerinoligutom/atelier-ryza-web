@@ -8,7 +8,7 @@
   .placeholder {
     position: absolute;
     padding: 4px;
-    transition: font-size 0.3s, bottom 0.3s;
+    transition: font-size 0.3s, bottom 0.3s, color 0.3s;
     font-size: 1.2em;
     font-size: 0.8em;
     bottom: 28px;
@@ -16,7 +16,7 @@
 
   .dropdown-field {
     border: unset;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--primary-text-color);
     font-size: 1.2em;
     padding: 4px;
     margin-top: 12px;
@@ -24,6 +24,7 @@
     background-color: transparent;
 
     &:focus {
+      border-bottom: 1px solid var(--active-input-color);
     }
   }
 }

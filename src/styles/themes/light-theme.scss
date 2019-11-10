@@ -1,10 +1,21 @@
-body.light-theme {
+body.Light {
   &.colors {
+    --blue: #4285f4;
+    --white: #fff;
+    --grey: #e9ebee;
+    --black: #000;
   }
 
   &.concepts {
+    --primary-brand-color: var(--blue);
+    --primary-background-color: var(--white);
+    --secondary-background-color: var(--grey);
+    --primary-text-color: var(--black);
+    --secondary-text-color: lighten(var(--black), 20%);
   }
 
   &.entities {
+    --content-background-color: var(--primary-background-color);
+    --active-input-color: var(--primary-brand-color);
   }
 }
