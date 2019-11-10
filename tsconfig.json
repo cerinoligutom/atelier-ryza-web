@@ -19,7 +19,8 @@
     "lib": ["es2018", "dom", "esnext.asynciterable"],
     "paths": {
       "@ryza/environment": ["src/environments/environment.ts"],
-      "@ryza/graphql": ["src/app/core/graphql"]
+      "@ryza/graphql": ["src/app/core/graphql"],
+      "@ryza/core/enums": ["src/app/core/enums"]
     }
   },
   "angularCompilerOptions": {

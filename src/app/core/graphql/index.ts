@@ -78,6 +78,7 @@ export type PasswordResult = {
   secondaryItem?: Maybe<ItemDrop>;
   monster?: Maybe<EnemyMonster>;
   boss?: Maybe<EnemyBoss>;
+  mapName?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -121,7 +122,7 @@ export type GetByItemNameQueryVariables = {
 
 export type GetByItemNameQuery = { __typename?: 'Query' } & { itemName: Array<{ __typename?: 'PasswordResult' } & PasswordResultFragment> };
 
-export type PasswordResultFragment = { __typename?: 'PasswordResult' } & Pick<PasswordResult, 'password' | 'level' | 'cost'> & {
+export type PasswordResultFragment = { __typename?: 'PasswordResult' } & Pick<PasswordResult, 'password' | 'level' | 'cost' | 'mapName'> & {
     primaryItem: Maybe<{ __typename?: 'ItemDrop' } & Pick<ItemDrop, 'name'>>;
     secondaryItem: Maybe<{ __typename?: 'ItemDrop' } & Pick<ItemDrop, 'name'>>;
     monster: Maybe<{ __typename?: 'EnemyMonster' } & Pick<EnemyMonster, 'name'>>;
@@ -133,6 +134,7 @@ export const PasswordResultFragmentDoc = gql`
     password
     level
     cost
+    mapName
     primaryItem {
       name
     }

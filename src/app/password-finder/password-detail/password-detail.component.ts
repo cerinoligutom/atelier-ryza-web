@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PasswordResultFragment } from '@ryza/graphql';
+import { PasswordResultFragment, EnemyBossType } from '@ryza/graphql';
 
 @Component({
   selector: 'ryza-password-detail',
@@ -12,4 +12,14 @@ export class PasswordDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  handleBossType(bossType: EnemyBossType) {
+    let formattedBossType = '';
+
+    if (bossType !== EnemyBossType.Regular) {
+      formattedBossType = `(${bossType})`;
+    }
+
+    return formattedBossType;
+  }
 }

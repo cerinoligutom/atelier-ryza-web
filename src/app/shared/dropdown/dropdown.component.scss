@@ -1,0 +1,29 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  margin: 8px 4px;
+
+  .placeholder {
+    position: absolute;
+    padding: 4px;
+    transition: font-size 0.3s, bottom 0.3s;
+    font-size: 1.2em;
+    font-size: 0.8em;
+    bottom: 28px;
+  }
+
+  .dropdown-field {
+    border: unset;
+    border-bottom: 1px solid black;
+    font-size: 1.2em;
+    padding: 4px;
+    margin-top: 12px;
+    min-height: 36px;
+    background-color: transparent;
+
+    &:focus {
+    }
+  }
+}

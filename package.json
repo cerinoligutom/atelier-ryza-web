@@ -7,7 +7,6 @@
   },
   "license": "GNU GPL V3",
   "scripts": {
-    "prestart": "graphql-codegen",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",

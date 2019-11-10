@@ -5,6 +5,10 @@ html {
   font-family: 'Fira Code', monospace;
 }
 
+body {
+  margin: 8px;
+}
+
 /* Grid System */
 .row {
   display: flex;
@@ -19,10 +23,10 @@ html {
     flex-direction: column;
     width: $i / 12 * 100%;
   }
+}
 
-  .col {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+.col {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

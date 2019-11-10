@@ -1,7 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { GetByItemNameGQL, GetByPasswordGQL, GetByItemNameQuery } from '@ryza/graphql';
+import { GetByItemNameGQL, GetByPasswordGQL, GetByItemNameQuery, PasswordResultFragment } from '@ryza/graphql';
 import { SubSink } from 'subsink';
-import { map } from 'rxjs/operators';
+import { map, debounceTime, switchMap, finalize } from 'rxjs/operators';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SearchType } from '@ryza/core/enums';
+
+interface ISearchForm {
+  searchInput: string;
+  levelLimit: number;
+  searchType: SearchType;
+}
 
 @Component({
   selector: 'ryza-password-finder',
@@ -10,24 +18,78 @@ import { map } from 'rxjs/operators';
 })
 export class PasswordFinderComponent implements OnInit, OnDestroy {
   subs = new SubSink();
-  results!: GetByItemNameQuery['itemName'];
+  results!: PasswordResultFragment[];
+  searchTypes: string[] = Object.values(SearchType);
+  form!: FormGroup;
+  isFetching = false;
 
-  constructor(private getByItemNameGQL: GetByItemNameGQL) {}
+  constructor(private fb: FormBuilder, private getByItemNameGQL: GetByItemNameGQL, private getByPasswordGQL: GetByPasswordGQL) {}
+
+  initForm() {
+    this.form = this.fb.group({
+      searchInput: ['Puniball', [Validators.required, Validators.minLength(2)]],
+      levelLimit: [100, [Validators.required, Validators.min(1), Validators.max(100)]],
+      searchType: [SearchType.ITEM_NAME, [Validators.required]],
+    });
+  }
+
+  setFormState() {
+    this.subs.sink = this.form.valueChanges
+      .pipe(
+        debounceTime<ISearchForm>(500),
+        switchMap(form => {
+          const { levelLimit, searchType } = form;
+          let { searchInput } = form;
+          searchInput = searchInput.trim();
+
+          if (!searchInput) {
+            return [];
+          }
+
+          this.isFetching = true;
+
+          switch (searchType) {
+            case SearchType.ITEM_NAME:
+              return this.fetchPasswordsByItemName(searchInput, levelLimit);
+
+            case SearchType.PASSWORD:
+              return this.fetchPasswordsByPassword(searchInput, levelLimit);
+
+            default:
+              return this.fetchPasswordsByItemName(searchInput, levelLimit);
+          }
+        }),
+      )
+      .subscribe(results => {
+        this.results = results;
+        this.isFetching = false;
+      });
+  }
 
   ngOnInit() {
-    this.fetchPasswordsByItemName('puniball', 100);
+    this.initForm();
+    this.setFormState();
+
+    // TODO: Temporary
+    this.form.updateValueAndValidity();
   }
 
   fetchPasswordsByItemName(itemName: string, levelLimit: number) {
-    this.subs.sink = this.getByItemNameGQL
+    return this.getByItemNameGQL
       .fetch({
         input: itemName,
         levelLimit,
       })
-      .pipe(map(x => x.data.itemName))
-      .subscribe(results => {
-        this.results = results;
-      });
+      .pipe(map(x => x.data.itemName));
+  }
+
+  fetchPasswordsByPassword(password: string, levelLimit: number) {
+    return this.getByPasswordGQL
+      .fetch({
+        input: password,
+        levelLimit,
+      })
+      .pipe(map(x => x.data.password));
   }
 
   ngOnDestroy() {
