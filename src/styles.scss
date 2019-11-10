@@ -18,6 +18,16 @@ body {
   }
 }
 
+/* Buttons */
+button {
+  border: unset;
+  border-radius: 0.3rem;
+  background-color: var(--primary-background-color);
+  padding: 4px 8px;
+
+  transition: background-color 0.5s;
+}
+
 /* Remove arrows on input type number */
 input[type='number'] {
   -webkit-appearance: textfield;

@@ -23,11 +23,32 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   isFetching = false;
 
+  page = 1;
+  pageSize = 50;
+
   constructor(private fb: FormBuilder, private getByItemNameGQL: GetByItemNameGQL, private getByPasswordGQL: GetByPasswordGQL) {}
+
+  get pageStart() {
+    return (this.page - 1) * this.pageSize;
+  }
+
+  get pageEnd() {
+    let pageEnd = this.pageSize * this.page;
+    pageEnd = pageEnd >= this.results.length ? this.results.length : pageEnd;
+    return pageEnd;
+  }
+
+  get canPaginateForward() {
+    return this.pageEnd < this.results.length;
+  }
+
+  get canPaginateBackwards() {
+    return this.pageStart !== 0;
+  }
 
   initForm() {
     this.form = this.fb.group({
-      searchInput: [null, [Validators.required, Validators.minLength(2)]],
+      searchInput: ['dunkelheit', [Validators.required, Validators.minLength(2)]],
       levelLimit: [100, [Validators.required, Validators.min(1), Validators.max(100)]],
       searchType: [SearchType.ITEM_NAME, [Validators.required]],
     });
@@ -63,6 +84,9 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
       .subscribe(results => {
         this.results = results;
         this.isFetching = false;
+
+        // Reset page
+        this.page = 1;
       });
   }
 
