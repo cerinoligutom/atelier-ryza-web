@@ -1,0 +1,6 @@
+<div class="input-container">
+  <label [for]="labelFor" class="placeholder">{{ placeholder }}</label>
+  <select class="dropdown-field" [formControl]="control">
+    <option *ngFor="let option of options" [ngValue]="option">{{ option }}</option>
+  </select>
+</div>

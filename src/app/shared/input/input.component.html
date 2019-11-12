@@ -1,0 +1,11 @@
+<div class="input-container">
+  <label [for]="labelFor" class="placeholder">{{ placeholder }}</label>
+
+  <!-- https://github.com/udos86/ng-dynamic-forms/issues/334 -->
+  <ng-container *ngIf="type === 'text'">
+    <input class="input-field" type="text" [formControl]="control" />
+  </ng-container>
+  <ng-container *ngIf="type === 'number'">
+    <input class="input-field" type="number" [formControl]="control" />
+  </ng-container>
+</div>

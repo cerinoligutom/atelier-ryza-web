@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.theme-switcher {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 4px;
+
+  .header {
+    margin-bottom: 4px;
+  }
+
+  .theme-options {
+    display: flex;
+    flex-direction: row;
+
+    .theme-option {
+      padding: 4px 8px;
+      cursor: pointer;
+
+      &.active {
+        background-color: var(--content-background-color);
+        border-radius: 0.25rem;
+      }
+    }
+  }
+}

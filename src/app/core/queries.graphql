@@ -1,0 +1,31 @@
+query GetByPassword($input: String!, $levelLimit: Int) {
+  password(input: $input, levelLimit: $levelLimit) {
+    ...passwordResult
+  }
+}
+
+query GetByItemName($input: String!, $levelLimit: Int) {
+  itemName(input: $input, levelLimit: $levelLimit) {
+    ...passwordResult
+  }
+}
+
+fragment passwordResult on PasswordResult {
+  password
+  level
+  cost
+  mapName
+  primaryItem {
+    name
+  }
+  secondaryItem {
+    name
+  }
+  monster {
+    name
+  }
+  boss {
+    name
+    type
+  }
+}

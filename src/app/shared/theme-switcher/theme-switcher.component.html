@@ -1,0 +1,8 @@
+<div class="theme-switcher">
+  <div class="header">Theme</div>
+  <div class="theme-options">
+    <div *ngFor="let option of options; let i = index" [class.active]="activeIndex === i" class="theme-option" (click)="themeSelected(i)">
+      {{ option }}
+    </div>
+  </div>
+</div>
