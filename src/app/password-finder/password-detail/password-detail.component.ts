@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PasswordResultFragment, EnemyBossType } from '@ryza/graphql';
+import { IPasswordDetailViewModel } from '@ryza/core/interfaces';
 
 @Component({
   selector: 'ryza-password-detail',
@@ -7,7 +8,7 @@ import { PasswordResultFragment, EnemyBossType } from '@ryza/graphql';
   styleUrls: ['./password-detail.component.scss'],
 })
 export class PasswordDetailComponent implements OnInit {
-  @Input() details!: PasswordResultFragment;
+  @Input() details!: PasswordResultFragment & IPasswordDetailViewModel;
 
   constructor() {}
 

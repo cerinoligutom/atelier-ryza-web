@@ -4,6 +4,7 @@ import { SubSink } from 'subsink';
 import { map, debounceTime, switchMap, finalize, tap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchType } from '@ryza/core/enums';
+import { IPasswordDetailViewModel } from '@ryza/core/interfaces';
 
 interface ISearchForm {
   searchInput: string;
@@ -18,7 +19,7 @@ interface ISearchForm {
 })
 export class PasswordFinderComponent implements OnInit, OnDestroy {
   subs = new SubSink();
-  results!: PasswordResultFragment[];
+  results!: (PasswordResultFragment & IPasswordDetailViewModel)[];
   searchTypes: string[] = Object.values(SearchType);
   form!: FormGroup;
   isFetching = false;
@@ -88,7 +89,24 @@ export class PasswordFinderComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         results => {
-          this.results = results;
+          const preprocessedResults = results.map((currentItem, i) => {
+            const previousItem = results[i - 1];
+
+            const viewModel: PasswordResultFragment & IPasswordDetailViewModel = {
+              ...currentItem,
+              isAlternativePassword: false,
+            };
+
+            if (previousItem) {
+              if (previousItem.level === currentItem.level) {
+                viewModel.isAlternativePassword = true;
+              }
+            }
+
+            return viewModel;
+          });
+
+          this.results = preprocessedResults;
           this.isFetching = false;
           // Reset page
           this.page = 1;

@@ -19,6 +19,7 @@ body.Dark {
 
   &.entities {
     --content-background-color: var(--primary-background-color);
+    --content-hovered-box-shadow-color: var(--primary-brand-color);
     --active-input-color: var(--primary-brand-color);
   }
 }
