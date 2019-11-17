@@ -3,7 +3,9 @@ body.Dark {
     --blue: #4285f4;
     --black: #1f232d;
     --grey: #272c38;
-    --light-grey: #8596a5;
+    --light-grey: #d4d4d4;
+    --light-blue: #b2cce5;
+    --red: #f64747;
   }
 
   &.concepts {
@@ -11,7 +13,8 @@ body.Dark {
     --primary-background-color: var(--black);
     --secondary-background-color: var(--grey);
     --primary-text-color: var(--light-grey);
-    --secondary-text-color: lighten(var(--light-grey), 20%);
+    --secondary-text-color: var(--light-blue);
+    --warning-text-color: var(--red);
   }
 
   &.entities {

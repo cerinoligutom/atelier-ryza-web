@@ -22,4 +22,8 @@ export class PasswordDetailComponent implements OnInit {
 
     return formattedBossType;
   }
+
+  get isRegularBoss() {
+    return this.details.boss && this.details.boss.type === EnemyBossType.Regular;
+  }
 }

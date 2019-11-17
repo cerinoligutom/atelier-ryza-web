@@ -4,6 +4,7 @@ body.Light {
     --white: #fff;
     --grey: #e9ebee;
     --black: #000;
+    --red: #f64747;
   }
 
   &.concepts {
@@ -12,6 +13,7 @@ body.Light {
     --secondary-background-color: var(--grey);
     --primary-text-color: var(--black);
     --secondary-text-color: lighten(var(--black), 20%);
+    --warning-text-color: var(--red);
   }
 
   &.entities {
