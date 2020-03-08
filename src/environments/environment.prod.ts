@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ryzaApiUri: 'http://api-ryza-pw-finder.ap-southeast-1.elasticbeanstalk.com/graphql',
+  ryzaApiUri: 'https://ryza-pw-finder-api.zeferinix.com/graphql',
 };
