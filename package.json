@@ -5,7 +5,7 @@
     "name": "Cerino O. Ligutom III",
     "url": "https://www.zeferinix.com"
   },
-  "license": "GNU GPL V3",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
